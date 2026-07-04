@@ -1,0 +1,7 @@
+# Files that should NOT be served publicly by the deployed site.
+# wrangler reads this (gitignore-style) from the assets directory.
+.git
+.gitignore
+.assetsignore
+wrangler.jsonc
+*.command

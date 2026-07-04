@@ -11,6 +11,9 @@
 # Local deploy scripts — they contain your GitHub token. NEVER publish them.
 *.command
 
+# Local Finder shortcut to the live site — not part of the deployable page.
+*.webloc
+
 # Reference images / screenshots dropped in the folder — never part of
 # the deployable page (El Recreo is a single self-contained index.html).
 *.png
