@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>El Recreo · Juegos de Cortadito</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,500;1,9..144,600&family=Nunito+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#fffdf9;
+    --paper:#ffffff;
+    --ink:#171210;
+    --muted:#8d8580;
+    --line:#eee2d6;
+    --red:#d9272e;
+    --green:#5c853c;
+    --coffee:#2a140d;
+    --gold:#c47a3d;
+    --shadow:0 30px 60px -40px rgba(23,18,16,.35);
+  }
+  html[data-theme="dark"]{
+    --bg:#14100e;
+    --paper:#201915;
+    --ink:#f5ede3;
+    --muted:#a79d93;
+    --line:#332a22;
+    --red:#f0575c;
+    --green:#8fbf63;
+    --gold:#d99a5c;
+    --shadow:0 30px 60px -40px rgba(0,0,0,.7);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:"Nunito Sans",-apple-system,system-ui,sans-serif;
+    color:var(--ink);background:var(--bg);
+    -webkit-font-smoothing:antialiased;
+    transition:background .3s ease,color .3s ease;
+  }
+  .serif{font-family:"Fraunces",Georgia,serif}
+
+  /* ---------- top bar (masthead, estilo Racimo) ---------- */
+  .masthead{border-bottom:1px solid var(--line)}
+  .topbar{
+    max-width:1000px;margin:0 auto;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:15px 24px;
+  }
+  .brand{display:flex;align-items:center;gap:11px}
+  .brand img{height:30px;width:auto;display:block;flex-shrink:0}
+  .brand .wordmark{font-family:"Fraunces",serif;font-weight:700;font-size:21px;letter-spacing:-.01em;color:var(--ink)}
+  .brand .dot{color:var(--gold)}
+  .toggle{
+    width:36px;height:36px;border-radius:50%;border:1px solid var(--line);
+    background:transparent;color:var(--ink);cursor:pointer;display:flex;
+    align-items:center;justify-content:center;flex-shrink:0;
+    transition:background .15s,color .15s,border-color .15s;
+  }
+  .toggle:hover{border-color:var(--muted);color:var(--red)}
+  .toggle svg{width:17px;height:17px}
+
+  /* ---------- hero title ---------- */
+  .intro{max-width:760px;margin:0 auto;padding:34px 24px 8px;text-align:center}
+  .intro h1{
+    font-family:"Fraunces",serif;font-weight:900;letter-spacing:-.02em;
+    font-size:clamp(48px,9vw,88px);line-height:.98;margin:0;color:var(--ink);
+  }
+  .intro p{
+    font-family:"Fraunces",serif;font-style:italic;font-weight:500;
+    color:var(--muted);font-size:clamp(18px,2.6vw,22px);margin:14px 0 0;
+  }
+
+  main{max-width:1000px;margin:0 auto;padding:20px 24px 100px}
+
+  /* ---------- Racimo hero (wide, premium — colored panel) ---------- */
+  .feature{
+    display:flex;align-items:center;gap:36px;
+    background:#f8d3ca;border:1px solid rgba(36,18,9,.07);border-radius:30px;
+    margin:34px 0 0;padding:38px 46px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+  }
+  .feature::before{
+    content:"";position:absolute;inset:0;pointer-events:none;
+    background:radial-gradient(300px 240px at 100% 118%, rgba(92,133,60,.22), transparent 58%);
+  }
+  .feature .flogo{width:142px;height:142px;flex:none;position:relative;z-index:1}
+  .feature .flogo svg{width:100%;height:100%;display:block}
+  .feature .ftext{flex:1;min-width:0;position:relative;z-index:1}
+  .feature .kick{display:inline-block;color:#a8151b;font-weight:800;font-size:12px;letter-spacing:.2em;text-transform:uppercase;margin-bottom:8px}
+  .feature h2{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(44px,7vw,64px);margin:0;line-height:1;color:#1c1108}
+  .feature .q{font-family:"Fraunces",serif;font-style:italic;font-weight:500;color:#7c5c4f;font-size:clamp(18px,2.6vw,23px);margin:12px 0 0;max-width:30ch}
+  .btn{
+    flex:none;position:relative;z-index:1;display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+    font-weight:800;font-size:17px;padding:16px 42px;border-radius:999px;
+    background:#fff;color:#141210;border:1.5px solid #141210;transition:background .18s ease,color .18s ease;
+  }
+  html[data-theme="dark"] .feature .btn{background:#fff;color:#141210}
+  .btn:hover{background:#141210;color:#fff}
+  .btn:active{transform:scale(.97)}
+  .btn svg{width:17px;height:17px}
+  @media(max-width:640px){
+    .feature{flex-direction:column;text-align:center;padding:40px 26px}
+    .feature .q{max-width:26ch}
+    .feature .btn{width:100%;justify-content:center}
+  }
+
+  /* ---------- family sections ---------- */
+  .fam{margin-top:60px}
+  .fam-head{margin:0 0 20px;padding:0 4px}
+  .fam-head h3{font-family:"Fraunces",serif;font-weight:900;font-size:clamp(30px,4.6vw,38px);margin:0;color:var(--ink);display:inline}
+  .fam-head p{color:var(--muted);font-size:16px;margin:6px 0 0;font-style:italic;font-family:"Fraunces",serif;font-weight:500}
+
+  .modes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  @media(max-width:720px){.modes{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:460px){.modes{grid-template-columns:1fr;max-width:340px;margin:0 auto}}
+
+  /* colorful poster cards */
+  a.card{
+    display:flex;flex-direction:column;text-decoration:none;background:var(--paper);
+    border:1px solid var(--line);border-radius:24px;overflow:hidden;
+    transition:transform .16s ease,box-shadow .16s ease;
+  }
+  a.card:hover{transform:translateY(-5px);box-shadow:var(--shadow)}
+  a.card .panel{display:flex;align-items:center;justify-content:center;padding:34px 20px 32px}
+  a.card .panel .icon{width:126px;height:126px}
+  a.card .panel .icon svg{width:100%;height:100%;display:block}
+  a.card .cbody{padding:18px 20px 20px;text-align:center;display:flex;flex-direction:column;align-items:center;flex:1}
+  a.card .cat{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:800;color:var(--muted);margin-bottom:6px}
+  a.card .title{font-family:"Fraunces",serif;font-weight:900;font-size:29px;color:var(--ink);line-height:1;margin-bottom:7px}
+  a.card .desc{color:var(--muted);font-size:15px;line-height:1.38;margin:0 0 16px;max-width:24ch;flex:1}
+  a.card .go{
+    display:inline-flex;align-items:center;gap:9px;font-weight:800;font-size:15px;
+    background:#fff;color:#141210;border:1.5px solid #141210;padding:11px 26px;border-radius:999px;transition:.18s;
+  }
+  a.card:hover .go{background:#141210;color:#fff;border-color:#141210}
+  a.card .go svg{width:14px;height:14px}
+
+  footer{text-align:center;color:var(--muted);font-size:13px;padding:10px 24px 60px}
+  footer a{color:var(--gold);text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+
+  <div class="masthead">
+  <div class="topbar">
+    <div class="brand">
+      <img src="data:image/png;base64,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" alt="Cortadito" />
+      <span class="wordmark">Cortadito<span class="dot">.</span>News</span>
+    </div>
+    <button class="toggle" id="themeBtn" aria-label="Cambiar tema"></button>
+  </div>
+  </div>
+
+  <div class="intro">
+    <h1 class="serif">El Recreo</h1>
+    <p>Una pausa para jugar.</p>
+  </div>
+
+  <main id="app"></main>
+
+  <footer>Hecho con cariño por <a href="https://cortadito.news/">Cortadito.News</a> · Lo esencial en un sorbo.</footer>
+
+<script>
+/* =====================================================================
+   LOGOS — SVG reales, extraídos de cada juego de Cortadito
+   ===================================================================== */
+function svg(i){return `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">${i}</svg>`;}
+function svg32(i){return `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">${i}</svg>`;}
+function fill(raw,a,a2){return raw.split('var(--accent-2)').join(a2).split('var(--accent)').join(a);}
+
+/* Racimo — racimo de 7 círculos (6 rojos alrededor de un centro verde) */
+const RACIMO_LOGO = svg('<circle cx="60" cy="24" r="24" fill="#cf2a2a"/><circle cx="91.2" cy="42" r="24" fill="#cf2a2a"/><circle cx="28.8" cy="42" r="24" fill="#cf2a2a"/><circle cx="91.2" cy="78" r="24" fill="#cf2a2a"/><circle cx="28.8" cy="78" r="24" fill="#cf2a2a"/><circle cx="60" cy="96" r="24" fill="#cf2a2a"/><circle cx="60" cy="60" r="24" fill="#5a7a3a"/>');
+
+/* Palabreo — fichas (accent = color de la variante, salvia fijo = #7a9a6d) */
+const PAL_SAGE = "#7a9a6d";
+function palClasico(a){return svg32(`<rect x="3" y="3" width="12" height="12" rx="3" fill="${a}"/><rect x="17" y="3" width="12" height="12" rx="3" fill="${PAL_SAGE}"/><rect x="3" y="17" width="12" height="12" rx="3" fill="${PAL_SAGE}"/><rect x="17" y="17" width="12" height="12" rx="3" fill="${a}"/>`);}
+function palCuarteto(a){return svg32(`<rect x="2" y="2" width="11" height="11" rx="2.5" fill="${a}"/><rect x="19" y="2" width="11" height="11" rx="2.5" fill="${PAL_SAGE}"/><rect x="2" y="19" width="11" height="11" rx="2.5" fill="${PAL_SAGE}"/><rect x="19" y="19" width="11" height="11" rx="2.5" fill="${a}"/>`);}
+function palTrenza(a){return svg32(`<rect x="3" y="3" width="9" height="9" rx="2" fill="${a}"/><rect x="20" y="3" width="9" height="9" rx="2" fill="${a}"/><rect x="3" y="20" width="9" height="9" rx="2" fill="${a}"/><rect x="20" y="20" width="9" height="9" rx="2" fill="${a}"/><rect x="11.5" y="11.5" width="9" height="9" rx="2" fill="${PAL_SAGE}"/>`);}
+
+/* Sudoku — granos de café (accent = grano, accent-2 = surco / grano central) */
+const SUDOKU3_RAW = '<g transform="rotate(-28 22 22)"><ellipse cx="22" cy="22" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 10.75 23.5 Q 22 18.25 33.25 22.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(14 60 22)"><ellipse cx="60" cy="22" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 48.75 23.5 Q 60 18.25 71.25 22.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(-18 98 22)"><ellipse cx="98" cy="22" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 86.75 23.5 Q 98 18.25 109.25 22.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(22 22 60)"><ellipse cx="22" cy="60" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 10.75 61.5 Q 22 56.25 33.25 60.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(0 60 60)"><ellipse cx="60" cy="60" rx="13.75" ry="9.375" style="fill:var(--accent-2)"/><path d="M 48.75 61.5 Q 60 56.25 71.25 60.5" style="fill:none;stroke:var(--accent);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(-22 98 60)"><ellipse cx="98" cy="60" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 86.75 61.5 Q 98 56.25 109.25 60.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(-14 22 98)"><ellipse cx="22" cy="98" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 10.75 99.5 Q 22 94.25 33.25 98.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(24 60 98)"><ellipse cx="60" cy="98" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 48.75 99.5 Q 60 94.25 71.25 98.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g><g transform="rotate(-30 98 98)"><ellipse cx="98" cy="98" rx="13.75" ry="9.375" style="fill:var(--accent)"/><path d="M 86.75 99.5 Q 98 94.25 109.25 98.5" style="fill:none;stroke:var(--accent-2);stroke-width:2.125;stroke-linecap:round"/></g>';
+const SUDOKU_MINI_RAW = '<g transform="translate(60 60) scale(1.27) translate(-60 -60)"><g transform="rotate(-22 36 36)"><ellipse cx="36" cy="36" rx="17.05" ry="11.625" style="fill:var(--accent-2)"/><path d="M 22.05 37.86 Q 36 31.35 49.95 36.62" style="fill:none;stroke:var(--accent);stroke-width:3.1;stroke-linecap:round"/></g><g transform="rotate(18 84 36)"><ellipse cx="84" cy="36" rx="17.05" ry="11.625" style="fill:var(--accent)"/><path d="M 70.05 37.86 Q 84 31.35 97.95 36.62" style="fill:none;stroke:var(--accent-2);stroke-width:3.1;stroke-linecap:round"/></g><g transform="rotate(14 36 84)"><ellipse cx="36" cy="84" rx="17.05" ry="11.625" style="fill:var(--accent)"/><path d="M 22.05 85.86 Q 36 79.35 49.95 84.62" style="fill:none;stroke:var(--accent-2);stroke-width:3.1;stroke-linecap:round"/></g><g transform="rotate(-26 84 84)"><ellipse cx="84" cy="84" rx="17.05" ry="11.625" style="fill:var(--accent-2)"/><path d="M 70.05 85.86 Q 84 79.35 97.95 84.62" style="fill:none;stroke:var(--accent);stroke-width:3.1;stroke-linecap:round"/></g></g>';
+function sudoku3(a,a2){return svg(fill(SUDOKU3_RAW,a,a2));}
+function sudokuMini(a,a2){return svg(fill(SUDOKU_MINI_RAW,a,a2));}
+
+/* Flechas — logos reales del juego */
+const FLECHAS_BORDE = '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg"><rect x="7" y="7" width="106" height="106" rx="26" fill="#F0E7CE" stroke="#E0D5B6" stroke-width="2"/><rect x="17" y="15" width="86" height="8" rx="4" fill="#662E9B"/><path d="M28 40 H54 Q61 40 61 47 V58 M53 50 L61 60 L69 50" fill="none" stroke="#141210" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M36 96 V56 M28 66 L36 56 L44 66" fill="none" stroke="#EA3546" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M52 96 V74 Q52 68 58 68 H74 M66 60 L75 68 L66 76" fill="none" stroke="#4ECDC4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><path d="M88 36 V92 M80 82 L88 92 L96 82" fill="none" stroke="#F9C80E" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const FLECHAS_CASCADA_RAW = '<rect x="8" y="8" width="104" height="104" rx="28" fill="var(--accent)"/><path d="M40 40 L60 56 L80 40" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity=".5"/><path d="M40 58 L60 74 L80 58" fill="none" stroke="#fff" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/><path d="M46 78 L60 92 L74 78" fill="none" stroke="var(--accent-2)" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>';
+function flechasCascada(a,a2){return svg(fill(FLECHAS_CASCADA_RAW,a,a2));}
+
+/* =====================================================================
+   Juegos — enlaces en vivo (workers.dev). Colores de panel = tinte suave
+   del acento real de cada modo.
+   ===================================================================== */
+const RACIMO = {
+  name:"Racimo",
+  question:"¿Cuántas palabras esconde este racimo?",
+  logo: RACIMO_LOGO,
+  url:"https://racimo.dre-c8f.workers.dev/"
+};
+
+const FAMILIES = [
+  {
+    family:"Palabreo", note:"Donde cada letra cuenta.",
+    modes:[
+      { name:"Clásico",  desc:"¿Cuál es la palabra de hoy?",       bg:"#ecd4e2", logo: palClasico("#9c3b6e"),  url:"https://palabreo.dre-c8f.workers.dev/?modo=clasico" },
+      { name:"Trenza",   desc:"Teje la trenza con intercambios.",  bg:"#f3e3c4", logo: palTrenza("#c8862e"),   url:"https://palabreo.dre-c8f.workers.dev/?modo=trenza" },
+      { name:"Cuarteto", desc:"Cuatro palabras a la vez.",         bg:"#d8daf3", logo: palCuarteto("#4f5bbf"), url:"https://palabreo.dre-c8f.workers.dev/?modo=cuarteto" }
+    ]
+  },
+  {
+    family:"Sudoku", note:"Cada número en su lugar.",
+    modes:[
+      { name:"Clásico", desc:"¿Qué patrón encontrarás hoy?",      bg:"#f6dac8", logo: sudoku3("#d9633b","#5b3a26"),   url:"https://sudoku.dre-c8f.workers.dev/?modo=clasico" },
+      { name:"Mini",    desc:"Un sorbo. Tres minutos.",           bg:"#cfe6d5", logo: sudokuMini("#15803d","#2f3640"), url:"https://sudoku.dre-c8f.workers.dev/?modo=mini" },
+      { name:"Niebla",  desc:"Despeja la niebla, celda a celda.",  bg:"#d2dde2", logo: sudoku3("#294f61","#8a5572"),   url:"https://sudoku.dre-c8f.workers.dev/?modo=niebla" }
+    ]
+  },
+  {
+    family:"Flechas", note:"Encuentra el camino correcto.",
+    modes:[
+      { name:"Cascada", desc:"Despeja antes de que caiga.",         bg:"#cfeeea", logo: flechasCascada("#4ECDC4","#ff6b6b"), url:"https://flechas.dre-c8f.workers.dev/cascada.html" },
+      { name:"Borde",   desc:"Evita el borde, despeja el tablero.",  bg:"#e2d8ef", logo: FLECHAS_BORDE,                       url:"https://flechas.dre-c8f.workers.dev/" }
+    ]
+  }
+];
+
+/* =====================================================================
+   RENDER
+   ===================================================================== */
+const ARROW=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"/></svg>`;
+const app=document.getElementById("app");
+const attrs=u=>u==="#"?'href="#" onclick="return false" title="Pega la URL en el archivo"':`href="${u}" target="_blank" rel="noopener"`;
+
+app.insertAdjacentHTML("beforeend",`
+  <section class="feature">
+    <div class="flogo">${RACIMO.logo}</div>
+    <div class="ftext">
+      <span class="kick">Destacado</span>
+      <h2>${RACIMO.name}</h2>
+      <p class="q">${RACIMO.question}</p>
+    </div>
+    <a class="btn" ${attrs(RACIMO.url)}>Jugar ${ARROW}</a>
+  </section>
+`);
+
+FAMILIES.forEach(fam=>{
+  const cards=fam.modes.map(m=>`
+    <a class="card" ${attrs(m.url)}>
+      <div class="panel" style="background:${m.bg}">
+        <div class="icon">${m.logo}</div>
+      </div>
+      <div class="cbody">
+        <div class="cat">${fam.family}</div>
+        <div class="title">${m.name}</div>
+        <div class="desc">${m.desc}</div>
+        <span class="go">Jugar ${ARROW}</span>
+      </div>
+    </a>`).join("");
+  app.insertAdjacentHTML("beforeend",`
+    <section class="fam">
+      <div class="fam-head"><h3>${fam.family}</h3><p>${fam.note}</p></div>
+      <div class="modes">${cards}</div>
+    </section>
+  `);
+});
+
+/* ---------- dark mode ---------- */
+const SUN=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>`;
+const MOON=`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A8.5 8.5 0 1 1 11.2 3a6.5 6.5 0 0 0 9.8 9.8z"/></svg>`;
+const btn=document.getElementById("themeBtn");
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t);btn.innerHTML=t==="dark"?SUN:MOON;try{localStorage.setItem("cortadito-theme",t);}catch(e){}}
+let saved;try{saved=localStorage.getItem("cortadito-theme");}catch(e){}
+applyTheme(saved||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+btn.addEventListener("click",()=>applyTheme(document.documentElement.getAttribute("data-theme")==="dark"?"light":"dark"));
+</script>
+</body>
+</html>
