@@ -123,10 +123,13 @@
 
   /* ---------- Racimo hero (wide, premium — colored panel) ---------- */
   .feature{
-    display:flex;align-items:center;gap:36px;
+    display:flex;align-items:center;gap:36px;text-decoration:none;color:inherit;cursor:pointer;
     background:#f8d3ca;border:1px solid rgba(36,18,9,.07);border-radius:30px;
     margin:34px 0 0;padding:38px 46px;box-shadow:var(--shadow);position:relative;overflow:hidden;
+    transition:transform .16s ease,box-shadow .16s ease;
   }
+  .feature:hover{transform:translateY(-4px)}
+  .feature:hover .btn{background:#141210;color:#fff}
   .feature::before{
     content:"";position:absolute;inset:0;pointer-events:none;
     background:radial-gradient(300px 240px at 100% 118%, rgba(92,133,60,.22), transparent 58%);
@@ -327,15 +330,15 @@ const app=document.getElementById("app");
 const attrs=u=>u==="#"?'href="#" onclick="return false" title="Pega la URL en el archivo"':`href="${u}" target="_blank" rel="noopener"`;
 
 app.insertAdjacentHTML("beforeend",`
-  <section class="feature">
+  <a class="feature" ${attrs(RACIMO.url)}>
     <div class="flogo">${RACIMO.logo}</div>
     <div class="ftext">
       <span class="kick">Destacado</span>
       <h2>${RACIMO.name}</h2>
       <p class="q">${RACIMO.question}</p>
     </div>
-    <a class="btn" ${attrs(RACIMO.url)}>Jugar ${ARROW}</a>
-  </section>
+    <span class="btn">Jugar ${ARROW}</span>
+  </a>
 `);
 
 FAMILIES.forEach(fam=>{
