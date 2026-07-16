@@ -68,8 +68,8 @@
   .menu-btn svg{width:20px;height:20px}
   .menu{
     position:absolute;top:48px;right:0;min-width:230px;
-    background:var(--paper);border:1px solid var(--line);border-radius:16px;
-    box-shadow:var(--shadow);padding:8px;z-index:60;
+    background:var(--paper);border:1.5px solid var(--line);border-radius:12px;
+    box-shadow:var(--shadow);padding:6px;z-index:60;
     opacity:0;visibility:hidden;transform:translateY(-6px);
     transition:opacity .15s ease,transform .15s ease,visibility .15s;
   }
@@ -77,7 +77,7 @@
   .menu button,.menu a{
     display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;
     text-align:left;background:transparent;border:0;cursor:pointer;font-family:inherit;
-    font-size:15px;font-weight:700;color:var(--ink);padding:11px 12px;border-radius:10px;
+    font-size:14px;font-weight:500;color:var(--ink);padding:10px 14px;border-radius:8px;
     text-decoration:none;transition:background .12s;
   }
   .menu button:hover,.menu a:hover{background:rgba(120,100,70,.10)}
@@ -230,6 +230,7 @@
       <div class="menu" id="menu" role="menu">
         <button id="themeItem" role="menuitem"><span>Tema</span><span class="val" id="themeVal">Claro</span></button>
         <button id="aboutItem" role="menuitem"><span>Sobre El Recreo</span></button>
+        <button id="howItem" role="menuitem"><span>Cómo funcionan los juegos</span></button>
         <div class="sep"></div>
         <a href="https://cortadito.news/" target="_blank" rel="noopener" role="menuitem"><span>Cortadito.News</span></a>
         <a class="cta" href="https://cortadito.news/subscribe" target="_blank" rel="noopener" role="menuitem">Suscribirse al boletín</a>
@@ -254,6 +255,28 @@
       <h3 id="aboutTitle">El Recreo</h3>
       <p>El rincón de juegos de <strong>Cortadito.News</strong>: un puñado de retos diarios en español — palabras, números y flechas — para tomarte una pausa y jugar.</p>
       <p>Porque el buen trabajo también incluye descansos. Un juego nuevo cada día — lo esencial en un sorbo.</p>
+    </div>
+  </div>
+
+
+  <div class="overlay" id="howOverlay">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="howTitle">
+      <button class="close" id="howClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
+      <h3 id="howTitle">Cómo funcionan los juegos</h3>
+      <svg viewBox="0 0 360 46" style="width:100%;height:auto;display:block;margin:2px 0 6px" aria-hidden="true">
+        <text x="0" y="28" font-family="inherit" font-size="11" font-weight="700" letter-spacing="1.8" fill="var(--ink)">DEBUTANTE</text>
+        <line x1="96" y1="23" x2="352" y2="23" stroke="var(--line)" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="112" cy="23" r="11" fill="var(--coffee)"/>
+        <g fill="var(--muted)"><circle cx="140" cy="23" r="3.4"/><circle cx="166" cy="23" r="3.4"/><circle cx="192" cy="23" r="3.4"/><circle cx="218" cy="23" r="3.4"/><circle cx="244" cy="23" r="3.4"/><circle cx="270" cy="23" r="3.4"/><circle cx="296" cy="23" r="3.4"/><circle cx="322" cy="23" r="3.4"/><circle cx="348" cy="23" r="3.4"/></g>
+        <rect x="282" y="9" width="3" height="28" rx="1.5" fill="var(--coffee)"/>
+      </svg>
+      <p><strong>El rango.</strong> Todos los juegos comparten la misma barra: subes por <strong>diez rangos</strong>, de <strong>Debutante</strong> a <strong>Maestro/a</strong>. La burbuja avanza con tu puntuación — puntos en unos juegos, tiempo en otros.</p>
+      <p><strong>El reto del día.</strong> La marca en la barra es una <strong>meta fija, igual para todo el mundo</strong>. Supérala y te llevas tu <strong>¡Buen sorbo!</strong> — y alimentas tu racha diaria.</p>
+      <p><strong>Anteriores.</strong> Cada juego guarda su calendario: puedes jugar cualquier día desde el <strong>1 de enero de 2026</strong> desde el menú <strong>Anteriores</strong>.</p>
+      <p><strong>Tutoriales.</strong> La primera vez que entres, cada juego te enseña a jugar en unos segundos. ¿Quieres repasar? Está en el menú ☰ → <strong>Ver tutorial</strong>.</p>
+      <p><strong>Tu progreso.</strong> Las estadísticas y rachas viven <strong>solo en tu navegador</strong> — nada se envía a ningún servidor.</p>
     </div>
   </div>
 
@@ -392,7 +415,11 @@ function closeAbout(){ overlay.classList.remove("open"); }
 document.getElementById("aboutItem").addEventListener("click",openAbout);
 document.getElementById("aboutClose").addEventListener("click",closeAbout);
 overlay.addEventListener("click",e=>{ if(e.target===overlay) closeAbout(); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ setMenu(false); closeAbout(); } });
+const howOverlay=document.getElementById("howOverlay");
+document.getElementById("howItem").addEventListener("click",()=>{ howOverlay.classList.add("open"); setMenu(false); });
+document.getElementById("howClose").addEventListener("click",()=>howOverlay.classList.remove("open"));
+howOverlay.addEventListener("click",e=>{ if(e.target===howOverlay) howOverlay.classList.remove("open"); });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ setMenu(false); closeAbout(); howOverlay.classList.remove("open"); } });
 </script>
 </body>
 </html>
