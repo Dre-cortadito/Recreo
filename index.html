@@ -101,7 +101,7 @@
     background:var(--paper);border:1px solid var(--line);border-radius:22px;
     max-width:440px;width:100%;padding:32px 30px;box-shadow:var(--shadow);position:relative;
   }
-  .modal{overflow:hidden}
+  .modal{overflow-x:hidden;overflow-y:auto;max-height:85vh;overscroll-behavior:contain}
   .modal .ristre{
     display:block;width:calc(100% + 60px);margin:-32px -30px 20px;
     aspect-ratio:16/9;object-fit:cover;border-bottom:1px solid var(--line);
@@ -401,7 +401,7 @@ function applyTheme(t){
   try{localStorage.setItem("cortadito-theme",t);}catch(e){}
 }
 let saved;try{saved=localStorage.getItem("cortadito-theme");}catch(e){}
-applyTheme(saved||(matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"));
+applyTheme(saved||"light"); /* default light, always (DESIGN-SYSTEM §1.3) */
 
 const menuBtn=document.getElementById("menuBtn");
 const menu=document.getElementById("menu");
@@ -414,16 +414,16 @@ document.getElementById("themeItem").addEventListener("click",()=>{
 });
 
 const overlay=document.getElementById("aboutOverlay");
-function openAbout(){ overlay.classList.add("open"); setMenu(false); }
-function closeAbout(){ overlay.classList.remove("open"); }
+function openAbout(){ overlay.classList.add("open"); setMenu(false); document.body.style.overflow="hidden"; }
+function closeAbout(){ overlay.classList.remove("open"); document.body.style.overflow=""; }
 document.getElementById("aboutItem").addEventListener("click",openAbout);
 document.getElementById("aboutClose").addEventListener("click",closeAbout);
 overlay.addEventListener("click",e=>{ if(e.target===overlay) closeAbout(); });
 const howOverlay=document.getElementById("howOverlay");
-document.getElementById("howItem").addEventListener("click",()=>{ howOverlay.classList.add("open"); setMenu(false); });
-document.getElementById("howClose").addEventListener("click",()=>howOverlay.classList.remove("open"));
-howOverlay.addEventListener("click",e=>{ if(e.target===howOverlay) howOverlay.classList.remove("open"); });
-document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ setMenu(false); closeAbout(); howOverlay.classList.remove("open"); } });
+document.getElementById("howItem").addEventListener("click",()=>{ howOverlay.classList.add("open"); setMenu(false); document.body.style.overflow="hidden"; });
+document.getElementById("howClose").addEventListener("click",()=>{ howOverlay.classList.remove("open"); document.body.style.overflow=""; });
+howOverlay.addEventListener("click",e=>{ if(e.target===howOverlay){ howOverlay.classList.remove("open"); document.body.style.overflow=""; } });
+document.addEventListener("keydown",e=>{ if(e.key==="Escape"){ setMenu(false); closeAbout(); howOverlay.classList.remove("open"); document.body.style.overflow=""; } });
 </script>
 </body>
 </html>
