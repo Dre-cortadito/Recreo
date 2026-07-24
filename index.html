@@ -17,7 +17,7 @@
     --muted:#8d8580;
     --line:#eee2d6;
     --red:#CF2A2A;
-    --green:#4F9E5F;
+    --green:#548C4C;
     --coffee:#2a140d;
     --gold:#c47a3d;
     --brand:#e35336;
@@ -295,10 +295,10 @@ function svg32(i){return `<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000
 function fill(raw,a,a2){return raw.split('var(--accent-2)').join(a2).split('var(--accent)').join(a);}
 
 /* Racimo — racimo de 7 círculos (6 rojos alrededor de un centro verde) */
-const RACIMO_LOGO = svg('<circle cx="60" cy="21" r="18" fill="#cf2a2a"/><circle cx="93.8" cy="40.5" r="18" fill="#cf2a2a"/><circle cx="26.2" cy="40.5" r="18" fill="#cf2a2a"/><circle cx="93.8" cy="79.5" r="18" fill="#cf2a2a"/><circle cx="26.2" cy="79.5" r="18" fill="#cf2a2a"/><circle cx="60" cy="99" r="18" fill="#cf2a2a"/><circle cx="60" cy="60" r="18" fill="#4F9E5F"/>');
+const RACIMO_LOGO = svg('<circle cx="60" cy="21" r="18" fill="#cf2a2a"/><circle cx="93.8" cy="40.5" r="18" fill="#cf2a2a"/><circle cx="26.2" cy="40.5" r="18" fill="#cf2a2a"/><circle cx="93.8" cy="79.5" r="18" fill="#cf2a2a"/><circle cx="26.2" cy="79.5" r="18" fill="#cf2a2a"/><circle cx="60" cy="99" r="18" fill="#cf2a2a"/><circle cx="60" cy="60" r="18" fill="#548C4C"/>');
 
-/* Palabreo — fichas (accent = color de la variante, salvia fijo = #4F9E5F) */
-const PAL_SAGE = "#4F9E5F";
+/* Palabreo — fichas (accent = color de la variante, salvia fijo = #548C4C) */
+const PAL_SAGE = "#548C4C";
 function palClasico(a){return svg32(`<rect x="3" y="3" width="12" height="12" rx="3" fill="${a}"/><rect x="17" y="3" width="12" height="12" rx="3" fill="${PAL_SAGE}"/><rect x="3" y="17" width="12" height="12" rx="3" fill="${PAL_SAGE}"/><rect x="17" y="17" width="12" height="12" rx="3" fill="${a}"/>`);}
 function palCuarteto(a){return svg32(`<rect x="2" y="2" width="11" height="11" rx="2.5" fill="${a}"/><rect x="19" y="2" width="11" height="11" rx="2.5" fill="${PAL_SAGE}"/><rect x="2" y="19" width="11" height="11" rx="2.5" fill="${PAL_SAGE}"/><rect x="19" y="19" width="11" height="11" rx="2.5" fill="${a}"/>`);}
 function palTrenza(a){return svg32(`<rect x="3" y="3" width="9" height="9" rx="2" fill="${a}"/><rect x="20" y="3" width="9" height="9" rx="2" fill="${a}"/><rect x="3" y="20" width="9" height="9" rx="2" fill="${a}"/><rect x="20" y="20" width="9" height="9" rx="2" fill="${a}"/><rect x="11.5" y="11.5" width="9" height="9" rx="2" fill="${PAL_SAGE}"/>`);}
@@ -340,7 +340,7 @@ const FAMILIES = [
     family:"Sudoku", note:"Cada número en su lugar.",
     modes:[
       { name:"Clásico", desc:"¿Qué patrón encontrarás hoy?",      bg:"#f6dac8", logo: sudoku3("#d9633b","#5b3a26"),   url:"https://sudoku.dre-c8f.workers.dev/?modo=clasico#landing" },
-      { name:"Mini",    desc:"Un sorbo. Tres minutos.",           bg:"#cfe6d5", logo: sudokuMini("#4F9E5F","#2f3640"), url:"https://sudoku.dre-c8f.workers.dev/?modo=mini#landing" },
+      { name:"Mini",    desc:"Un sorbo. Tres minutos.",           bg:"#cfe6d5", logo: sudokuMini("#548C4C","#2f3640"), url:"https://sudoku.dre-c8f.workers.dev/?modo=mini#landing" },
       { name:"Niebla",  desc:"Despeja la niebla, celda a celda.",  bg:"#d2dde2", logo: sudoku3("#294f61","#8a5572"),   url:"https://sudoku.dre-c8f.workers.dev/?modo=niebla#landing" }
     ]
   },
